@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Ticket Booking</title>
+  <style>
+    /* Basic styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    nav .logo h1 {
+      margin: 0;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav .links .link a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav .buttons button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    /* Login/Signup styles */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      background-color: #f4f4f4;
+    }
+
+    .form {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    .form h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .form button:hover {
+      background-color: #0056b3;
+    }
+
+    .form .toggle {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .form .toggle a {
+      color: #007bff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .form .toggle a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <h1>Poribohon</h1>
+    </div>
+    <div class="links">
+      <div class="link" data-aos="fade-up" data-aos-duration="1200">
+        <a href="">Home+</a>
+      </div>
+      <div class="link" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+        <a href="">About</a>
+      </div>
+      <div class="link" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+        <a href="">Services</a>
+      </div>
+      <div class="link" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500">
+        <a href="#seatMap">Seat Map</a>
+      </div>
+      <div class="link" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+        <a href="">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Signup Form -->
+    <div id="signupForm" class="form">
+      <h2>Sign Up</h2>
+      <input type="text" id="signupUsername" placeholder="Enter Username" required />
+      <input type="password" id="signupPassword" placeholder="Enter Password" required />
+      <button onclick="signup()">Sign Up</button>
+      <p class="toggle">
+        Already have an account? <a onclick="showLogin()">Login here</a>
+      </p>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" class="form" style="display: none">
+      <h2>Login</h2>
+      <input type="text" id="loginUsername" placeholder="Enter Username" required />
+      <input type="password" id="loginPassword" placeholder="Enter Password" required />
+      <button onclick="login()">Login</button>
+      <p class="toggle">
+        Don't have an account? <a onclick="showSignup()">Sign up here</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function showLogin() {
+      document.getElementById("signupForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+    }
+
+    function showSignup() {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("signupForm").style.display = "block";
+    }
+
+    function signup() {
+      const username = document.getElementById("signupUsername").value;
+      const password = document.getElementById("signupPassword").value;
+
+      if (username && password) {
+        if (localStorage.getItem(username)) {
+          alert("Username already exists!");
+        } else {
+          localStorage.setItem(username, password);
+          alert("Sign up successful! Please login.");
+          showLogin();
+        }
+      } else {
+        alert("Please fill in all fields!");
+      }
+    }
+
+    function login() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      if (username && password) {
+        const storedPassword = localStorage.getItem(username);
+        if (storedPassword && storedPassword === password) {
+          alert("Login successful! Book");
+          window.location.href="Home.html";
+        } else {
+          alert("Invalid username or password!");
+        }
+      } else {
+        alert("Please fill in all fields!");
+      }
+    }
+  </script>
+</body>
+
+</html>

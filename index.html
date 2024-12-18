@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bus Reservation System</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        
+        #secondButton {
+            display: none;
+        }
+    </style>
+</head>
+<body background="C:\Users\Dell\OneDrive\Desktop\bus.jpg">
+    <header>
+        <div class="logo">
+            <h1>BusBooking</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h2>Book Your Bus Ticket</h2>
+        <form id="reservationForm" style="color: black;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="from">From:</label>
+            <input type="text" id="from" required>
+
+            <label for="to">To:</label>
+            <input type="text" id="to" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" min="1" required>
+
+            <button type="submit" id="firstButton">Book Now</button>
+        </form>
+
+        <div id="confirmation" class="hidden">
+            <h2>Booking Confirmation</h2>
+            <p id="confirmationMessage" style="color: black;"></p>
+            <a href="seats.html">
+            <button type="submit" id="secondButton">Select Seat</button>
+            </a>
+            <script>
+            const firstButton = document.getElementById('firstButton');
+            const secondButton = document.getElementById('secondButton');
+    
+            
+            firstButton.addEventListener('click', function() {
+                
+                secondButton.style.display = 'inline-block';
+            });
+            </script>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 BusBooking. All rights reserved.</p>
+    </footer>
+
+    <script src="script1.js"></script>
+</body>
+</html>
